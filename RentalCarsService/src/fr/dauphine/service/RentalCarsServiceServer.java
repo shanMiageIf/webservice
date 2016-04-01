@@ -6,13 +6,14 @@ import java.util.Date;
 
 import fr.dauphine.service.Garage;
 
+@SuppressWarnings("deprecation")
 public class RentalCarsServiceServer {
 
 	public static void main(String[] args) {
 		try {
-//			System.setSecurityManager(new RMISecurityManager());
-//		    Garage g =(Garage) Naming.lookup("rmi://localhost/RentalCarService");
-//		    g.addVoiture(0, "benz", new Date(), "belle voiture", false, true);
+			System.setSecurityManager(new RMISecurityManager());
+		    Garage g =(Garage) Naming.lookup("rmi://localhost/RentalCarService");
+		    g.addVoiture(0, "benz", new Date(), "belle voiture", false, true);
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}

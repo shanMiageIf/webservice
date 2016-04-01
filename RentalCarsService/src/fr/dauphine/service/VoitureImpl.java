@@ -7,6 +7,10 @@ import java.util.Date;
 public class VoitureImpl extends UnicastRemoteObject implements Voiture {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private Date addDate;
 	private boolean isDisponible;
