@@ -9,7 +9,7 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 	private Long id;
 	private String nom;
 	private String prenom;
-	private static long attendNum = 0;
+	private Voiture myVoiture;
 	public Dauphinois() throws RemoteException {
 		super();
 	}
@@ -45,31 +45,25 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 		this.prenom = prenom;
 	}
 
-	public static long getAttendNum() {
-		return attendNum;
-	}
-
-	public static void setAttendNum(long attendNum) {
-		Dauphinois.attendNum = attendNum;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	@Override
-	public void louerVoiture(long id,IServiceCenter is) throws RemoteException {
-
-	}
-
-	@Override
-	public void rendreVoiture(long id)throws RemoteException {
-		
-
-	}
-
+	
 	@Override
 	public void messageOfAdherente() throws RemoteException {
 		System.out.println("vous ête adherente maintenant! ");		
+	}
+
+	@Override
+	public Voiture getVoiture() throws RemoteException {
+		
+		return myVoiture;
+	}
+
+	@Override
+	public void setVoiture(Voiture voiture) throws RemoteException {
+	    this.myVoiture=voiture;
+		
 	}
 }

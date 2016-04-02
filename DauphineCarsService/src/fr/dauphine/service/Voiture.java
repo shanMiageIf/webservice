@@ -3,12 +3,10 @@ package fr.dauphine.service;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Voiture extends UnicastRemoteObject implements IVoiture {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private Date addDate;
@@ -16,8 +14,9 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	private String commentaire;
 	private boolean dejaLoue;
 	private String name;
-
-	protected Voiture() throws RemoteException {
+    private LinkedList<Professeur> professeurList;
+    private LinkedList<Etudiant>etudiantList;
+	public Voiture() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -103,6 +102,30 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	@Override
 	public void setDejaLoue(boolean dejaLoue) throws RemoteException {
 		this.dejaLoue =dejaLoue;
+		
+	}
+
+	@Override
+	public LinkedList<Professeur> getProfesseurList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return professeurList;
+	}
+
+	@Override
+	public void setProfesseurList(LinkedList<Professeur> professeurList) throws RemoteException {
+		this.professeurList =professeurList;
+		
+	}
+
+	@Override
+	public LinkedList<Etudiant> getEtudiantList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return etudiantList;
+	}
+
+	@Override
+	public void setEtudiantList(LinkedList<Etudiant> etudiantList) throws RemoteException {
+		this.etudiantList=etudiantList;
 		
 	}
 }

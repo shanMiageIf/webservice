@@ -3,6 +3,7 @@ package fr.dauphine.service;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.LinkedList;
 
 public interface IVoiture extends Remote {
 
@@ -30,4 +31,11 @@ public interface IVoiture extends Remote {
 
 	public void setName(String name) throws RemoteException;
 
+	public LinkedList<Professeur> getProfesseurList() throws RemoteException;
+
+	public void setProfesseurList(LinkedList<Professeur> professeurList) throws RemoteException;
+
+	public LinkedList<Etudiant> getEtudiantList() throws RemoteException;
+
+	public void setEtudiantList(LinkedList<Etudiant> etudiantList) throws RemoteException;
 }
