@@ -24,7 +24,6 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 
 	@Override
 	public void Subscribe(IDauphinois ida) throws RemoteException {
-        
 	}
 
 	@Override
