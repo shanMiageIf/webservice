@@ -13,7 +13,7 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 	HashMap<Long, Dauphinois> adherentes;
 	HashMap<Long, Voiture> voitureList;
 
-	protected ServiceCenter() throws RemoteException {
+	public ServiceCenter() throws RemoteException {
 		super();
 		adherentes = new HashMap<Long, Dauphinois>();
 		voitureList = new HashMap<Long, Voiture>();
