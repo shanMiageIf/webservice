@@ -1,5 +1,7 @@
 package fr.dauphine.service;
 
+//import java.rmi.SecurityManager;
+import java.lang.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -11,26 +13,19 @@ import java.util.Scanner;
 
 public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter {
 
-	HashMap<Long, Dauphinois> adherenteList;
+	HashMap<Long, IDauphinois> adherenteList;
 	HashMap<Long, Voiture> voitureList;
 
-	protected ServiceCenter() throws RemoteException {
+	public ServiceCenter() throws RemoteException {
 		super();
-		adherenteList = new HashMap<Long, Dauphinois>();
+		adherenteList = new HashMap<Long, IDauphinois>();
 		voitureList = new HashMap<Long, Voiture>();
+		String codebase = "file:///F:/ file:///F:/observateur/ observateur/ ;";
+				System.setProperty("java.rmi.server.codebase", codebase);
+				System.setProperty("java.security.policy", "no.policy");
+				System.setSecurityManager(new SecurityManager());
 	}
-
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	public void Subscribe(IDauphinois ida) throws RemoteException {
-	}
-
-	@Override
-	public void Unsubscribe(IDauphinois ida) throws RemoteException {
-
-	}
-
 	@Override
 	public void addVoiture(long id, String name, Date addDate, String commentaire, boolean dejaloue,
 			boolean isDisponible) throws RemoteException {
@@ -46,7 +41,20 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 
 	@Override
 	public void removeVoiture(long id) throws RemoteException {
-
+            try {
+            	IVoiture v = this.findVoiture(id);
+            	for (Entry<Long, Voiture> entry : voitureList.entrySet()) {
+        			long Vid = entry.getKey();
+        			v = entry.getValue();
+        			if(v.getId()==id){
+        				voitureList.remove(Vid);
+        				System.out.println("supprimer la voiture  " +id+ " !");
+        			}
+        			}
+            	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	@Override
@@ -83,9 +91,9 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 	@Override
 	public void louerVoiture(long id, long Dauphineid) throws RemoteException {
 		IVoiture v = this.findVoiture(id);
-		for (Entry<Long, Dauphinois> entry : adherenteList.entrySet()) {
+		for (Entry<Long, IDauphinois> entry : adherenteList.entrySet()) {
 			long dauphinois_id = entry.getKey();
-			Dauphinois dauphinois = entry.getValue();
+			IDauphinois dauphinois = entry.getValue();
 			if (Dauphineid == dauphinois_id) {
 				if (v.isDisponible() == true) {
 					dauphinois.setVoiture(v);
@@ -112,12 +120,12 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 	@Override
 	public void rendreVoiture(long id, long Dauphineid) throws RemoteException {
 		IVoiture v = this.findVoiture(id);
-		for (Entry<Long, Dauphinois> entry : adherenteList.entrySet()) {
+		for (Entry<Long, IDauphinois> entry : adherenteList.entrySet()) {
 			long dauphinois_id = entry.getKey();
-			Dauphinois dauphinois = entry.getValue();
+			IDauphinois dauphinois = entry.getValue();
 			if (Dauphineid == dauphinois_id) {
-				if (dauphinois.getMyVoiture().equals(v)) {
-					dauphinois.setMyVoiture(null);
+				if (dauphinois.getVoiture().equals(v)) {
+					dauphinois.setVoiture(null);
 					v.setDisponible(true);
 					Scanner in = new Scanner(System.in);
 					System.out.println("Veuillez entrer une note de 1 à 5");
@@ -146,5 +154,18 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 		}
 
 		return null;
+	}
+
+	@Override
+	public synchronized void  Subscribe(IDauphinois ida) throws RemoteException {
+		System.out.println(ida.getClass()+" s'enregistre");
+		adherenteList.put(ida.getId(), ida);
+		
+	}
+
+	@Override
+	public synchronized void Unsubscribe(IDauphinois ida) throws RemoteException {
+		System.out.println(ida.getClass()+" s'enregistre");
+		adherenteList.remove(ida.getId(), ida);
 	}
 }

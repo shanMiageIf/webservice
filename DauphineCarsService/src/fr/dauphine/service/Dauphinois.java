@@ -59,7 +59,7 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 	
 	@Override
 	public void messageOfAdherente() throws RemoteException {
-		System.out.println("vous ête adherente maintenant! ");		
+		System.out.println("vous êtes adherente maintenant! ");		
 	}
 
 	@Override
