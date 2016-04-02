@@ -16,6 +16,7 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	private String name;
     private LinkedList<Professeur> professeurList;
     private LinkedList<Etudiant>etudiantList;
+    private int note;
 	public Voiture() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -92,6 +93,7 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 		this.name=name;
 		
 	}
+	
 
 	@Override
 	public boolean isDejaloue() throws RemoteException {
@@ -128,4 +130,18 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 		this.etudiantList=etudiantList;
 		
 	}
+
+	@Override
+	public void setNote(int note) throws RemoteException {
+	      this.note =note;
+		
+	}
+
+	@Override
+	public int getNote() throws RemoteException {
+		// TODO Auto-generated method stub
+		return note;
+	}
+
+
 }

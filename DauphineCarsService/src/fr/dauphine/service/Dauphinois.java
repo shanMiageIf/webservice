@@ -9,11 +9,18 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 	private Long id;
 	private String nom;
 	private String prenom;
-	private Voiture myVoiture;
+	private IVoiture myVoiture;
 	public Dauphinois() throws RemoteException {
 		super();
 	}
 
+	public IVoiture getMyVoiture() {
+		return myVoiture;
+	}
+
+	public void setMyVoiture(IVoiture myVoiture) {
+		this.myVoiture = myVoiture;
+	}
 	public Dauphinois(Long id, String nom, String prenom) throws RemoteException {
 		super();
 		this.id = id;
@@ -21,7 +28,7 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 		this.prenom = prenom;
 	}
 
-	public Long getId() {
+	public long getId()throws RemoteException {
 		return id;
 	}
 
@@ -56,14 +63,18 @@ public class Dauphinois extends UnicastRemoteObject implements IDauphinois {
 	}
 
 	@Override
-	public Voiture getVoiture() throws RemoteException {
-		
+	public IVoiture getVoiture() throws RemoteException {
+		// TODO Auto-generated method stub
 		return myVoiture;
 	}
 
 	@Override
-	public void setVoiture(Voiture voiture) throws RemoteException {
-	    this.myVoiture=voiture;
-		
+	public void setVoiture(IVoiture voiture) throws RemoteException {
+		// TODO Auto-generated method stub
+		this.myVoiture = voiture;
 	}
+
+	
+
+
 }

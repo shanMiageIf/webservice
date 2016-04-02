@@ -12,6 +12,10 @@ public interface IVoiture extends Remote {
 	public void setId(long id) throws RemoteException;
 
 	public Date getAddDate() throws RemoteException;
+	
+	public void setNote(int note) throws RemoteException;
+	
+	public int getNote() throws RemoteException;
 
 	public void setAddDate(Date addDate) throws RemoteException;
 

@@ -4,8 +4,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IDauphinois extends Remote {
-	
+	public long getId()throws RemoteException;
     public void messageOfAdherente()throws RemoteException;
-    public Voiture getVoiture()throws RemoteException;
-    public void setVoiture(Voiture voiture)throws RemoteException;
+    public IVoiture getVoiture()throws RemoteException;
+    public void setVoiture(IVoiture voiture)throws RemoteException;
 }

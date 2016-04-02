@@ -22,7 +22,7 @@ public interface IServiceCenter extends Remote {
 	public void updateVoiture(long id, String name, Date addDate, String commentaire, boolean dejaloue,
 			boolean isDisponible) throws RemoteException;
 
-	public void louerVoiture(long id, IServiceCenter is) throws RemoteException;
+	public void louerVoiture(long id,long Dauphineid) throws RemoteException;
 
-	public void rendreVoiture(long id) throws RemoteException;
+	public void rendreVoiture(long id,long Dauphineid) throws RemoteException;
 }
