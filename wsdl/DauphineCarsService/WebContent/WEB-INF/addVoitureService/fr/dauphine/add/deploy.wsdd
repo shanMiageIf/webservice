@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from addVoitureService WSDL service -->
+
+  <service name="addVoiture" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://add.dauphine.fr"/>
+      <parameter name="wsdlServiceElement" value="addVoitureService"/>
+      <parameter name="schemaQualified" value="http://add.dauphine.fr"/>
+      <parameter name="wsdlServicePort" value="addVoiture"/>
+      <parameter name="className" value="fr.dauphine.add.addVoiture"/>
+      <parameter name="wsdlPortType" value="addVoiture"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://add.dauphine.fr" xmlns:retNS="http://add.dauphine.fr" xmlns:rtns="http://add.dauphine.fr" xmlns:tns="http://add.dauphine.fr" name="getPanier" qname="operNS:getPanier" returnQName="retNS:getPanierReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://add.dauphine.fr" name="addToPanier" qname="operNS:addToPanier" soapAction="">
+        <parameter xmlns:pns="http://add.dauphine.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <parameter xmlns:pns="http://add.dauphine.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:long"/>
+      </operation>
+      <parameter name="allowedMethods" value="addToPanier getPanier"/>
+
+      <typeMapping xmlns:ns="http://add.dauphine.fr" qname="ns:&gt;getPanierResponse" type="java:fr.dauphine.add.GetPanierResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://add.dauphine.fr" qname="ns:&gt;addToPanier" type="java:fr.dauphine.add.AddToPanier" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://add.dauphine.fr" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://add.dauphine.fr" qname="ns:&gt;addToPanierResponse" type="java:fr.dauphine.add.AddToPanierResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://add.dauphine.fr" qname="ns:&gt;getPanier" type="java:fr.dauphine.add.GetPanier" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

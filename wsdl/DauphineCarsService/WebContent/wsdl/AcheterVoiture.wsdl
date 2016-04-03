@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://acheter.dauphine.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://acheter.dauphine.fr" xmlns:intf="http://acheter.dauphine.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://acheter.dauphine.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="buyCars">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:long"/>
+      <element name="prix" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCarsResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buyCarsResponse">
+
+      <wsdl:part element="impl:buyCarsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyCarsRequest">
+
+      <wsdl:part element="impl:buyCars" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AcheterVoiture">
+
+      <wsdl:operation name="buyCars">
+
+         <wsdl:input message="impl:buyCarsRequest" name="buyCarsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyCarsResponse" name="buyCarsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AcheterVoitureSoapBinding" type="impl:AcheterVoiture">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="buyCars">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyCarsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyCarsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AcheterVoitureService">
+
+      <wsdl:port binding="impl:AcheterVoitureSoapBinding" name="AcheterVoiture">
+
+         <wsdlsoap:address location="http://localhost:8080/DauphineCarsService/services/AcheterVoiture"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

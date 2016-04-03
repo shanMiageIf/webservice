@@ -4,7 +4,6 @@ import java.rmi.Naming;
 
 import fr.dauphine.service.Etudiant;
 import fr.dauphine.service.IServiceCenter;
-import fr.dauphine.service.Professeur;
 
 public class CarsServiceClient {
 

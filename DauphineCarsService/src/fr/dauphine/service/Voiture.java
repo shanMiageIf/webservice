@@ -38,6 +38,15 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 		this.professeurList = professeurList;
 		this.etudiantList = etudiantList;
 		this.prix = prix;
+		
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
 	}
 
 	@Override

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://findVoiture.dauphine.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://findVoiture.dauphine.fr" xmlns:intf="http://findVoiture.dauphine.fr" xmlns:tns1="http://service.dauphine.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://findVoiture.dauphine.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.dauphine.fr"/>
+   <element name="findVoitureByName">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findVoitureByNameResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findVoitureByNameReturn" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findVoitureByNameRequest">
+
+      <wsdl:part element="impl:findVoitureByName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findVoitureByNameResponse">
+
+      <wsdl:part element="impl:findVoitureByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="FindVoiture">
+
+      <wsdl:operation name="findVoitureByName">
+
+         <wsdl:input message="impl:findVoitureByNameRequest" name="findVoitureByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findVoitureByNameResponse" name="findVoitureByNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FindVoitureSoapBinding" type="impl:FindVoiture">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="findVoitureByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findVoitureByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findVoitureByNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FindVoitureService">
+
+      <wsdl:port binding="impl:FindVoitureSoapBinding" name="FindVoiture">
+
+         <wsdlsoap:address location="http://localhost:8080/DauphineCarsService/services/FindVoiture"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
