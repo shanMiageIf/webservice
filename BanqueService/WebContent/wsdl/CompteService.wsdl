@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://banqueService.dauphine.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://banqueService.dauphine.fr" xmlns:intf="http://banqueService.dauphine.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://banqueService.dauphine.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addMoney">
+    <complexType>
+     <sequence>
+      <element name="money" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addMoneyResponse">
+    <complexType/>
+   </element>
+   <element name="retraitMoney">
+    <complexType>
+     <sequence>
+      <element name="money" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retraitMoneyResponse">
+    <complexType>
+     <sequence>
+      <element name="retraitMoneyReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMoney">
+    <complexType/>
+   </element>
+   <element name="getMoneyResponse">
+    <complexType>
+     <sequence>
+      <element name="getMoneyReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getMoneyRequest">
+
+      <wsdl:part element="impl:getMoney" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addMoneyResponse">
+
+      <wsdl:part element="impl:addMoneyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retraitMoneyResponse">
+
+      <wsdl:part element="impl:retraitMoneyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMoneyResponse">
+
+      <wsdl:part element="impl:getMoneyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addMoneyRequest">
+
+      <wsdl:part element="impl:addMoney" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retraitMoneyRequest">
+
+      <wsdl:part element="impl:retraitMoney" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CompteService">
+
+      <wsdl:operation name="addMoney">
+
+         <wsdl:input message="impl:addMoneyRequest" name="addMoneyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addMoneyResponse" name="addMoneyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retraitMoney">
+
+         <wsdl:input message="impl:retraitMoneyRequest" name="retraitMoneyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retraitMoneyResponse" name="retraitMoneyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMoney">
+
+         <wsdl:input message="impl:getMoneyRequest" name="getMoneyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMoneyResponse" name="getMoneyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CompteServiceSoapBinding" type="impl:CompteService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addMoney">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addMoneyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addMoneyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retraitMoney">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retraitMoneyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retraitMoneyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMoney">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMoneyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMoneyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CompteServiceService">
+
+      <wsdl:port binding="impl:CompteServiceSoapBinding" name="CompteService">
+
+         <wsdlsoap:address location="http://localhost:8080/BanqueService/services/CompteService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://EuroToYen.dauphine.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://EuroToYen.dauphine.fr" xmlns:intf="http://EuroToYen.dauphine.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://EuroToYen.dauphine.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getEuroToYen">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEuroToYenResponse">
+    <complexType>
+     <sequence>
+      <element name="getEuroToYenReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getEuroToYenRequest">
+
+      <wsdl:part element="impl:getEuroToYen" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEuroToYenResponse">
+
+      <wsdl:part element="impl:getEuroToYenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EuroToYen">
+
+      <wsdl:operation name="getEuroToYen">
+
+         <wsdl:input message="impl:getEuroToYenRequest" name="getEuroToYenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEuroToYenResponse" name="getEuroToYenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EuroToYenSoapBinding" type="impl:EuroToYen">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getEuroToYen">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEuroToYenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEuroToYenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EuroToYenService">
+
+      <wsdl:port binding="impl:EuroToYenSoapBinding" name="EuroToYen">
+
+         <wsdlsoap:address location="http://localhost:8080/BanqueService/services/EuroToYen"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

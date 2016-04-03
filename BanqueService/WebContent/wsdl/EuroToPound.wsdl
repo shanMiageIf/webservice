@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://EuroToPound.dauphine.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://EuroToPound.dauphine.fr" xmlns:intf="http://EuroToPound.dauphine.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://EuroToPound.dauphine.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getEuroToPound">
+    <complexType>
+     <sequence>
+      <element name="montant" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEuroToPoundResponse">
+    <complexType>
+     <sequence>
+      <element name="getEuroToPoundReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getEuroToPoundRequest">
+
+      <wsdl:part element="impl:getEuroToPound" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEuroToPoundResponse">
+
+      <wsdl:part element="impl:getEuroToPoundResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EuroToPound">
+
+      <wsdl:operation name="getEuroToPound">
+
+         <wsdl:input message="impl:getEuroToPoundRequest" name="getEuroToPoundRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEuroToPoundResponse" name="getEuroToPoundResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EuroToPoundSoapBinding" type="impl:EuroToPound">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getEuroToPound">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEuroToPoundRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEuroToPoundResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EuroToPoundService">
+
+      <wsdl:port binding="impl:EuroToPoundSoapBinding" name="EuroToPound">
+
+         <wsdlsoap:address location="http://localhost:8080/BanqueService/services/EuroToPound"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

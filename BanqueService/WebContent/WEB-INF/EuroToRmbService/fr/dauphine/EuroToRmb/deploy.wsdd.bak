@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EuroToRmbService WSDL service -->
+
+  <service name="EuroToRmb" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://EuroToRmb.dauphine.fr"/>
+      <parameter name="wsdlServiceElement" value="EuroToRmbService"/>
+      <parameter name="schemaQualified" value="http://EuroToRmb.dauphine.fr"/>
+      <parameter name="wsdlServicePort" value="EuroToRmb"/>
+      <parameter name="className" value="fr.dauphine.EuroToRmb.EuroToRmbSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="EuroToRmb"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getEuroToDollar" qname="operNS:getEuroToDollar" xmlns:operNS="http://EuroToRmb.dauphine.fr" returnQName="retNS:getEuroToDollarReturn" xmlns:retNS="http://EuroToRmb.dauphine.fr" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:montant" xmlns:pns="http://EuroToRmb.dauphine.fr" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getEuroToDollar"/>
+
+  </service>
+</deployment>
