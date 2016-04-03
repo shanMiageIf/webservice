@@ -11,24 +11,37 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter {
+public class ServiceCenter extends UnicastRemoteObject implements
+		IServiceCenter {
 
 	HashMap<Long, IDauphinois> adherenteList;
-	HashMap<Long, Voiture> voitureList;
+	private HashMap<Long, Voiture> voitureList;
+
+	public HashMap<Long, Voiture> getVoitureList() {
+		return voitureList;
+	}
+
+	public void setVoitureList(HashMap<Long, Voiture> voitureList) {
+		this.voitureList = voitureList;
+	}
 
 	public ServiceCenter() throws RemoteException {
 		super();
 		adherenteList = new HashMap<Long, IDauphinois>();
 		voitureList = new HashMap<Long, Voiture>();
-		String codebase = "file:///F:/ file:///F:/observateur/ observateur/ ;";
-				System.setProperty("java.rmi.server.codebase", codebase);
-				System.setProperty("java.security.policy", "no.policy");
-				System.setSecurityManager(new SecurityManager());
+		// String codebase =
+		// "file:///F:/ file:///F:/observateur/ observateur/ ;";
+		// System.setProperty("java.rmi.server.codebase", codebase);
+		// System.setProperty("java.security.policy", "no.policy");
+		// System.setSecurityManager(new SecurityManager());
 	}
+
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	public void addVoiture(long id, String name, Date addDate, String commentaire, boolean dejaloue,
-			boolean isDisponible) throws RemoteException {
+	public void addVoiture(long id, String name, Date addDate,
+			String commentaire, boolean dejaloue, boolean isDisponible)
+			throws RemoteException {
 		Voiture v = new Voiture();
 		v.setId(id);
 		v.setDisponible(isDisponible);
@@ -41,20 +54,20 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 
 	@Override
 	public void removeVoiture(long id) throws RemoteException {
-            try {
-            	IVoiture v = this.findVoiture(id);
-            	for (Entry<Long, Voiture> entry : voitureList.entrySet()) {
-        			long Vid = entry.getKey();
-        			v = entry.getValue();
-        			if(v.getId()==id){
-        				voitureList.remove(Vid);
-        				System.out.println("supprimer la voiture  " +id+ " !");
-        			}
-        			}
-            	
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			IVoiture v = this.findVoiture(id);
+			for (Entry<Long, Voiture> entry : voitureList.entrySet()) {
+				long Vid = entry.getKey();
+				v = entry.getValue();
+				if (v.getId() == id) {
+					voitureList.remove(Vid);
+					System.out.println("supprimer la voiture  " + id + " !");
+				}
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -72,8 +85,9 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 	}
 
 	@Override
-	public void updateVoiture(long id, String name, Date addDate, String commentaire, boolean dejaloue,
-			boolean isDisponible) throws RemoteException {
+	public void updateVoiture(long id, String name, Date addDate,
+			String commentaire, boolean dejaloue, boolean isDisponible)
+			throws RemoteException {
 		IVoiture iv = this.findVoiture(id);
 		if (iv != null) {
 			iv.setName(name);
@@ -81,10 +95,13 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 			iv.setCommentaire(commentaire);
 			iv.setDejaLoue(dejaloue);
 			iv.setDisponible(isDisponible);
-			System.out.println("update la voiture ! l'information est mise à jour " + iv.toString());
+			System.out
+					.println("update la voiture ! l'information est mise à jour "
+							+ iv.toString());
 
 		} else {
-			System.err.println(" je ne peut pas supprimer la voiture!la voiture n'existe pas! ");
+			System.err
+					.println(" je ne peut pas supprimer la voiture!la voiture n'existe pas! ");
 		}
 	}
 
@@ -99,8 +116,8 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 					dauphinois.setVoiture(v);
 					v.setDisponible(false);
 				} else {
-					System.out.println(
-							"votre voiture commandée n'est pas disponible, je vous ajoute à la liste d'attente");
+					System.out
+							.println("votre voiture commandée n'est pas disponible, je vous ajoute à la liste d'attente");
 					if (dauphinois instanceof Professeur) {
 						v.getProfesseurList().add((Professeur) dauphinois);
 					} else {
@@ -131,7 +148,8 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 					System.out.println("Veuillez entrer une note de 1 à 5");
 					int note = in.nextInt();
 					v.setNote(note);
-					System.out.println("Veuillez entrer un commentaire en une ligne");
+					System.out
+							.println("Veuillez entrer un commentaire en une ligne");
 					String commentaire = in.nextLine();
 					v.setCommentaire(commentaire);
 				}
@@ -157,15 +175,16 @@ public class ServiceCenter extends UnicastRemoteObject implements IServiceCenter
 	}
 
 	@Override
-	public synchronized void  Subscribe(IDauphinois ida) throws RemoteException {
-		System.out.println(ida.getClass()+" s'enregistre");
+	public synchronized void Subscribe(IDauphinois ida) throws RemoteException {
+		System.out.println(ida.getClass() + " s'enregistre");
 		adherenteList.put(ida.getId(), ida);
-		
+
 	}
 
 	@Override
-	public synchronized void Unsubscribe(IDauphinois ida) throws RemoteException {
-		System.out.println(ida.getClass()+" s'enregistre");
-		adherenteList.remove(ida.getId(), ida);
+	public synchronized void Unsubscribe(IDauphinois ida)
+			throws RemoteException {
+		// System.out.println(ida.getClass()+" s'enregistre");
+		// adherenteList.remove(ida.getId(), ida);
 	}
 }

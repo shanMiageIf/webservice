@@ -14,97 +14,103 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	private String commentaire;
 	private boolean dejaLoue;
 	private String name;
-    private LinkedList<Professeur> professeurList;
-    private LinkedList<Etudiant>etudiantList;
-    private int note;
+	private LinkedList<Professeur> professeurList;
+	private LinkedList<Etudiant> etudiantList;
+	private int note;
+	private double prix;
+
 	public Voiture() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Voiture(long id, Date addDate, boolean isDisponible, String commentaire, boolean dejaLoue, String name)
+	public Voiture(long id, Date addDate, boolean isDisponible,
+			String commentaire, boolean dejaLoue, String name,
+			LinkedList<Professeur> professeurList,
+			LinkedList<Etudiant> etudiantList, double prix)
 			throws RemoteException {
-		super();
 		this.id = id;
 		this.addDate = addDate;
 		this.isDisponible = isDisponible;
 		this.commentaire = commentaire;
 		this.dejaLoue = dejaLoue;
 		this.name = name;
+		this.professeurList = professeurList;
+		this.etudiantList = etudiantList;
+		this.prix = prix;
 	}
 
 	@Override
 	public long getId() throws RemoteException {
-		
+
 		return id;
 	}
 
 	@Override
 	public void setId(long id) throws RemoteException {
-		
-		this.id=id;
-		
+
+		this.id = id;
+
 	}
 
 	@Override
 	public Date getAddDate() throws RemoteException {
-		
+
 		return addDate;
 	}
 
 	@Override
 	public void setAddDate(Date addDate) throws RemoteException {
-		
-		this.addDate =addDate;
+
+		this.addDate = addDate;
 	}
 
 	@Override
 	public boolean isDisponible() throws RemoteException {
-		
+
 		return isDisponible;
 	}
 
 	@Override
 	public void setDisponible(boolean isDisponible) throws RemoteException {
-		
-		this.isDisponible=isDisponible;
+
+		this.isDisponible = isDisponible;
 	}
 
 	@Override
 	public String getCommentaire() throws RemoteException {
-		
+
 		return commentaire;
 	}
 
 	@Override
 	public void setCommentaire(String commentaire) throws RemoteException {
-		
-		this.commentaire=commentaire;
+
+		this.commentaire = commentaire;
 	}
 
 	@Override
 	public String getName() throws RemoteException {
-		
+
 		return name;
 	}
 
 	@Override
 	public void setName(String name) throws RemoteException {
-		this.name=name;
-		
+		this.name = name;
+
 	}
-	
 
 	@Override
 	public boolean isDejaloue() throws RemoteException {
-		
+
 		return dejaLoue;
 	}
 
 	@Override
 	public void setDejaLoue(boolean dejaLoue) throws RemoteException {
-		this.dejaLoue =dejaLoue;
-		
+		this.dejaLoue = dejaLoue;
+
 	}
 
 	@Override
@@ -114,9 +120,10 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	}
 
 	@Override
-	public void setProfesseurList(LinkedList<Professeur> professeurList) throws RemoteException {
-		this.professeurList =professeurList;
-		
+	public void setProfesseurList(LinkedList<Professeur> professeurList)
+			throws RemoteException {
+		this.professeurList = professeurList;
+
 	}
 
 	@Override
@@ -126,15 +133,16 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 	}
 
 	@Override
-	public void setEtudiantList(LinkedList<Etudiant> etudiantList) throws RemoteException {
-		this.etudiantList=etudiantList;
-		
+	public void setEtudiantList(LinkedList<Etudiant> etudiantList)
+			throws RemoteException {
+		this.etudiantList = etudiantList;
+
 	}
 
 	@Override
 	public void setNote(int note) throws RemoteException {
-	      this.note =note;
-		
+		this.note = note;
+
 	}
 
 	@Override
@@ -142,6 +150,5 @@ public class Voiture extends UnicastRemoteObject implements IVoiture {
 		// TODO Auto-generated method stub
 		return note;
 	}
-
 
 }
